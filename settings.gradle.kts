@@ -1,4 +1,4 @@
-rootProject.name = "pam-2026-p4-ifs23019-be"
+rootProject.name = "pam-2026-p4-ifs23046-be"
 
 dependencyResolutionManagement {
     repositories {
