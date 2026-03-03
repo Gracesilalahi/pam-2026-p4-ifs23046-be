@@ -1,7 +1,23 @@
-rootProject.name = "pam-2026-p4-ifs23046-be"
-
-dependencyResolutionManagement {
+pluginManagement {
     repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
         mavenCentral()
     }
 }
+
+rootProject.name = "Delcom Desserts"
+include(":app")
