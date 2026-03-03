@@ -1,0 +1,204 @@
+## Global Variabel
+#@BaseUrl = https://pam-2026-p4-ifs23019-be.annyklaudya.site:8080/
+@BaseUrl = http://127.0.0.1:8000
+
+## Profile
+## ===========================================
+
+### Mengambil semua data profil
+# @name GetProfile
+GET {{BaseUrl}}/profile
+Content-Type: application/json
+
+### Mengambil photo profil
+# @name GetProfilePhoto
+GET {{BaseUrl}}/profile/photo
+Content-Type: application/json
+
+
+## Plants
+## ===========================================
+
+### Mengambil semua data tumbuhan
+# @name GetAllPlants
+GET {{BaseUrl}}/plants?search=
+Content-Type: application/json
+
+### Menambahkan data tumbuhan baru
+# @name PostPlants
+POST {{BaseUrl}}/plants
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Kangkung
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Brokoli adalah sayuran hijau yang kaya vitamin, mineral, dan serat
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Membantu detoksifikasi dan menjaga kesehatan mata
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Dapat menyebabkan kembung
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+> {%
+    client.global.set("plantId", response.body.data.plantId);
+    console.log(client.global.get("plantId"))
+%}
+
+### Mengambil data tumbuhan berdasarkan id-nya
+# @name GetPlantById
+GET {{BaseUrl}}/plants/{{plantId}}
+Content-Type: application/json
+
+### Melihat gambar tumbuhan
+# @name GetPlantImageById
+GET {{BaseUrl}}/plants/{{plantId}}/image
+Content-Type: application/json
+
+### Mengubah hanya data plant berdasarkan id-nya
+# @name PutPlantOnlyData
+PUT {{BaseUrl}}/plants/{{plantId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Brokoli Update
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Brokoli adalah sayuran hijau yang kaya vitamin, mineral, dan serat
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Membantu detoksifikasi dan menjaga kesehatan mata
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Dapat menyebabkan kembung
+--WebAppBoundary--
+
+### Mengubah gambar dan data plant berdasarkan id-nya
+# @name PutPlant
+PUT {{BaseUrl}}/plants/{{plantId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Brokoli
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Brokoli adalah sayuran hijau yang kaya vitamin, mineral, dan serat
+--WebAppBoundary
+Content-Disposition: form-data; name="manfaat"
+
+Membantu detoksifikasi dan menjaga kesehatan mata
+--WebAppBoundary
+Content-Disposition: form-data; name="efekSamping"
+
+Dapat menyebabkan kembung
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+< ./example.png
+--WebAppBoundary--
+
+### Menghapus data plant berdasarkan id-nya
+# @name DeletePlant
+DELETE {{BaseUrl}}/plants/{{plantId}}
+Content-Type: application/json
+
+
+## Boneka (New Topic)
+## ===========================================
+
+### Mengambil semua data boneka
+# @name GetAllBoneka
+GET {{BaseUrl}}/boneka?search=
+Content-Type: application/json
+
+### Menambahkan koleksi boneka baru
+# @name PostBoneka
+POST {{BaseUrl}}/boneka
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Teddy Bear Cokelat
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Boneka beruang klasik dengan bulu yang sangat lembut dan nyaman dipeluk.
+--WebAppBoundary
+Content-Disposition: form-data; name="material"
+
+Bulu Rasfur, Isian Dakron Grade A
+--WebAppBoundary
+Content-Disposition: form-data; name="ukuran"
+
+Jumbo (80cm)
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="boneka.png"
+Content-Type: image/png
+
+< ./boneka.png
+--WebAppBoundary--
+
+> {%
+    client.global.set("bonekaId", response.body.data.bonekaId);
+    console.log(client.global.get("bonekaId"))
+%}
+
+### Mengambil data boneka berdasarkan id-nya
+# @name GetBonekaById
+GET {{BaseUrl}}/boneka/{{bonekaId}}
+Content-Type: application/json
+
+### Melihat gambar boneka
+# @name GetBonekaImageById
+GET {{BaseUrl}}/boneka/{{bonekaId}}/image
+Content-Type: application/json
+
+### Mengubah data boneka (Tanpa Gambar)
+# @name PutBonekaOnlyData
+PUT {{BaseUrl}}/boneka/{{bonekaId}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="nama"
+
+Teddy Bear Cokelat Premium
+--WebAppBoundary
+Content-Disposition: form-data; name="deskripsi"
+
+Versi premium dengan pita merah di leher dan bahan anti alergi.
+--WebAppBoundary
+Content-Disposition: form-data; name="material"
+
+Premium Velboa, High Quality Silicon
+--WebAppBoundary
+Content-Disposition: form-data; name="ukuran"
+
+Super Jumbo (100cm)
+--WebAppBoundary--
+
+### Menghapus data boneka berdasarkan id-nya
+# @name DeleteBoneka
+DELETE {{BaseUrl}}/boneka/{{bonekaId}}
+Content-Type: application/json
